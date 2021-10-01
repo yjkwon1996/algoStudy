@@ -51,10 +51,10 @@ for i, j, k in fares :
     graph[i-1][j-1] = graph[j-1][i-1] = k
     
 # 플루이드 - 와샬 알고리즘
-for k in range(n) : # 모든 노드를 중간으로 가정
-    for i in range(n) : # 거리 행렬을 순회하면서
-        for j in range(n) : # 현재 거리 행렬에 저장된 거리가 k를 거치는 거리보다 멀다면 갱신(최소 거리로)
-            if graph[i][j] > graph[i][k] + graph[k][j] :
+for k in range(n) : # 모든 노드를 중간으로 가정. k : 경유지
+    for i in range(n) : # 거리 행렬을 순회하면서. i : 출발지
+        for j in range(n) : # 현재 거리 행렬에 저장된 거리가 k를 거치는 거리보다 멀다면 갱신. j : 목적
+            if graph[i][j] > graph[i][k] + graph[k][j] : # 최솟값 갱신. min()보다 빠르다
                 graph[i][j] = graph[i][k] + graph[k][j]
             
 # 출발점 기준, 어떤 지점 i를 거쳐 각각 a와 b로 가는 최소 비용을 찾는다.
