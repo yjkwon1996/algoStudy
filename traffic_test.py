@@ -20,11 +20,28 @@ lines 배열에 대해 초당 최대 처리량을 return
 입력으로 주어지는 데이터는 오름차순 정렬 - 그리디 알고리즘 적용
 
 lines 배열 내부 정보는 문자열, 문자열 데이터를 정수형 시간 데이터로 변환(비교를 위해)
-
-
+이후, 각 값들을 비교하면서 1000밀리초(1초) 구간동안 겹치는 것을 확인하면 카운트를 1 증가
 
 """
 
+# 입력으로 들어오는 lines의 log 배열을 정수형으로 변환
+# 로그의 끝시간. 밀리초 단위로 계산하기 위해 시간들을 모두 밀리초 단위로 변환
+def end_time(time) :
+    hour = int(time[:2]) * 3600
+    minute = int(time[3:5]) * 60
+    second = int(time[6:8])
+    millisec = int(time[9:])
+    return (hour + minute + second) * 1000 + millisec
+    
+    
+# 로그의 시작 시간으로, 끝 시간에서 지속 시간을 빼주면 된다.
+# 끝 시간과 시작 시간을 모두 포함하기 때문에
+# 시작시간, 끝시간을 구하기 위해end_time(time) - duration_time + 1
+def start_time(time, duration) :
+    time = duration[:-1]
+    duration_time = int(float(time) * 1000)
+    return end_time(time) - duration_time + 1
+    
 
 answer = 0
 
