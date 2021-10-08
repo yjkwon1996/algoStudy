@@ -1,4 +1,4 @@
-lines = ["2016-09-15 01:00:04.001 2.0s","2016-09-15 01:00:07.000 2s"]
+# lines = ["2016-09-15 01:00:04.001 2.0s","2016-09-15 01:00:07.000 2s"]
 # return = 1
 
 # lines = ["2016-09-15 01:00:04.002 2.0s","2016-09-15 01:00:07.000 2s"]
@@ -23,6 +23,25 @@ lines 배열 내부 정보는 문자열, 문자열 데이터를 정수형 시간
 이후, 각 값들을 비교하면서 1000밀리초(1초) 구간동안 겹치는 것을 확인하면 카운트를 1 증가
 
 """
+    
+def solution(lines) :
+    answer = 0  
+    start = [] # 응답 시작 시간 배열
+    end = [] # 응답 완료 시간 배열
+    
+    for i in lines : # 년-월-일 시:분:초.밀리초 지속시간
+        time = i.split(" ") # 시, 분, 초.밀리초와 지속시간 데이터를 이용
+        start.append(start_time(time[1], time[2])) # 시작 시간에 추가
+        end.append(end_time(time[1])) # 끝 시간도 추가해준다.
+    
+    for i in range(len(lines)) :
+        cnt = 0
+        current_endtime = end[i]
+        for j in range(i, len(lines)) : # i는 현재 자신의 시작시간, i이하는 그 전의 시작시간이므로 셀 필요X
+            if current_endtime > start[j] - 1000 :
+                cnt += 1
+        answer = max(answer, cnt)
+    return answer
 
 # 입력으로 들어오는 lines의 log 배열을 정수형으로 변환
 # 로그의 끝시간. 밀리초 단위로 계산하기 위해 시간들을 모두 밀리초 단위로 변환
@@ -38,11 +57,16 @@ def end_time(time) :
 # 끝 시간과 시작 시간을 모두 포함하기 때문에
 # 시작시간, 끝시간을 구하기 위해end_time(time) - duration_time + 1
 def start_time(time, duration) :
-    time = duration[:-1]
-    duration_time = int(float(time) * 1000)
+    d_time = duration[:-1]
+    duration_time = int(float(d_time) * 1000)
     return end_time(time) - duration_time + 1
+
+
+if __name__ == "__main__" :
+    lines = ["2016-09-15 01:00:04.001 2.0s","2016-09-15 01:00:07.000 2s"]
+    lines2 = ["2016-09-15 01:00:04.002 2.0s","2016-09-15 01:00:07.000 2s"]
+    lines3 = ["2016-09-15 20:59:57.421 0.351s","2016-09-15 20:59:58.233 1.181s","2016-09-15 20:59:58.299 0.8s","2016-09-15 20:59:58.688 1.041s","2016-09-15 20:59:59.591 1.412s","2016-09-15 21:00:00.464 1.466s","2016-09-15 21:00:00.741 1.581s","2016-09-15 21:00:00.748 2.31s","2016-09-15 21:00:00.966 0.381s","2016-09-15 21:00:02.066 2.62s"]
+    print(solution(lines))
+    print(solution(lines2))
+    print(solution(lines3))
     
-
-answer = 0
-
-
