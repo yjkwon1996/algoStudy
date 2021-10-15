@@ -43,20 +43,25 @@ def open_check(x, y, key, lock, start, end) :
     ex_size = len(lock) + start * 2 # 확장된 lock 배열의 크기
     ex_lock = [[0] * ex_size for _ in range(ex_size)]
     
-    # 확장된 크기의 lock에 기존 lock의 정보 추가
-    for i in range(start, end) :
-        for j in range(start, end) :
-            ex_lock[i][j] += lock[i-start][j-start]
-    
-    # key를 넣었을 때 자물쇠의 빈 홈이 채워지는지 확인. 돌기와 돌기가 만나거나 홈이 안채워지면 false
+    # 확장된 lock에 key 값 추가
     for i in range(len(key)) :
         for j in range(len(key)) :
             ex_lock[x+i][y+j] += key[i][j]
+    
+    # 확장된 크기의 lock에 기존 lock의 정보 추가
+    # key값을 먼저 넣어야 하는 이유 :
+    # key값만 넣었을 경우, 0이 다수 존재 -> lock를 추가해서 1이 아닌 값을 찾으면 된다.
+    # lock값을 먼저 넣었을 경우, 반복하는 범위에 있어서 에러가 발생하기 때문에, key+lock가 되어야 한다!
+    for i in range(start, end) :
+        for j in range(start, end) :
+            ex_lock[i][j] += lock[i-start][j-start]
             # 홈이 모두 맞아떨어지려면 값이 1이어야 함
             # 만약 ex_lock에 1이 아닌 값이 있으면 False return
             if ex_lock[i][j] != 1 :
                 return False
     return True
+
+
 
 if __name__ == "__main__" :
     key = [[0, 0, 0], [1, 0, 0], [0, 1, 1]]
