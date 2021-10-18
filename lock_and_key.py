@@ -66,4 +66,5 @@ def open_check(x, y, key, lock, start, end) :
 if __name__ == "__main__" :
     key = [[0, 0, 0], [1, 0, 0], [0, 1, 1]]
     lock = [[1, 1, 1], [1, 1, 0], [1, 0, 1]]
+    # answer = True
     print(solution(key, lock))
