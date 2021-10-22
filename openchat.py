@@ -7,6 +7,7 @@ def solution(record):
     
     
     
+    
     return answer
 
 if __name__ == "__main__" :
