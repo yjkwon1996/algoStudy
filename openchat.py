@@ -12,6 +12,20 @@ def solution(record):
     """
     log = dict()
     
+    
+    # log에 uid가 마지막으로 enter, change를 한 기록을 통해서 최종 닉네임과 uid를 저장
+    visited = []
+    for i in record :
+        tmp = i.split() # action uid nickname
+        if tmp[0] == 'Change' or tmp[0] == 'Enter' :
+                nickname = tmp[2]
+                # uid와 닉네임을 dict 형태로
+                log[tmp[1]] = nickname
+        visited.append((tmp[0], tmp[1]))
+    
+    
+    # 아래로 할 경우, 시간부족(if문 한번 더 거침)
+    """
     # record를 뒤에서부터 순회하면서 enter, change가 나온다면 같은 uid의 다른 모든 행동에서의 이름을 변경
     visited = []
     for i in record[::-1] :
@@ -22,8 +36,9 @@ def solution(record):
                 visited.append(tmp[1]) 
                 # uid와 닉네임을 dict 형태로
                 log[tmp[1]] = tmp[2]
-            else : continue
-        
+                
+        else : continue
+     """   
     
     # change는 출력하지 않아도 된다.
     for i in record :
