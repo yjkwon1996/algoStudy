@@ -8,7 +8,6 @@
 """
 
 def solution(s):
-    answer = -1
     stack = []
 
     for i in range(len(s)) :
