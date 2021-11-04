@@ -20,8 +20,8 @@
 # u, v 분리
 def divide(p) :
     # 균형잡힌 문자열 분리
-    left_p = 0
-    right_p = 0
+    left_p = 0 # '(' 의 수
+    right_p = 0 # ')' 의 수
     for i in range(len(p)) :
         if p[i] == '(' : # '(' 괄호의 수
             left_p += 1
