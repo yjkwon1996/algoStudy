@@ -35,16 +35,16 @@ def solution(str1, str2):
             str2_arr.append(str2[i:i+2])
         
     # str1_arr 집합과 str2_arr 집합의 교집합, 합집합을 찾는다.
-    # 교집합의 개수 구하기. 크기가 작은 리스트에 있는 원소가 크기가 큰 리스트에 있으면 교집합 수 +1
-    intersection = 0
-    for i in min(str1_arr, str2_arr) : # str1_arr과 str2_arr 집합 중 크기가 작은 리스트에서 i
-        if max(str1_arr, str2_arr).count(i) != 0 : # 그 i값과 동일한 문자의 count가 0이 아니면(1 이상이면)
-            intersection += 1 # intersetion(교집합)의 개수 1 증
+    intersection = 0 # 교집합
+    union = 0 # 합집합
     
-    # 합집합의 개수 구하기
-    # 합집합 = 집합 + 집합 - 교집합
-    union = len(str1_arr) + len(str2_arr) - intersection
+    # set을 이용해서 두 집합에서의 모든 요소를 중복 없이 한번씩 순회하며 반
+    # 이후, 각 요소와 집합을 비교해서 그 요소를 count한다. min은 교집합, max는 합집합
+    for i in set(str1_arr + str2_arr) :
+        intersection += min(str1_arr.count(i), str2_arr.count(i)) # 교집합은 min
+        union += max(str1_arr.count(i), str2_arr.count(i)) # 합집합은 max
     
+
     # 공집합인 경우 -> 유사도의 값은 1
     if union == 0 : # str1과 str2의 합집합이 0 == 공집합
         return 65536
