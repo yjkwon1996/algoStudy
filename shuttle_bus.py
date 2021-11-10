@@ -14,6 +14,9 @@ timetable은 하루 동안 사람이 대기열에 도착하는 시간이 hh:mm�
 
 def solution(n, t, m, timetable):
     answer = ''
+    
+    
+    
     return answer
 
 
