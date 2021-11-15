@@ -2,6 +2,7 @@
 # [1차] 셔틀버스
 # https://programmers.co.kr/learn/courses/30/lessons/17678
 
+
 """
 셔틀은 09:00부터 총 n회 t분 간격으로 역에 도착하며 하나의 셔틀에는 최대 m명의 승객이 탑승가능
 셔틀은 도착한 순간에 대기열에 선 사람부터 대기 순서대로 태운다. 09:00에 도착한 셔틀은 09:00에 줄선 사람도 탑승가능
@@ -19,7 +20,6 @@ timetable은 하루 동안 사람이 대기열에 도착하는 시간이 hh:mm�
 
 def solution(n, t, m, timetable):
     answer = ''
-    
     # timetable의 시간을 분단위로 환산. 본래 데이터는 문자열이기 때문에 정수형으로
     min_timetable = [int(time[:2]) * 60 + int(time[3:5]) for time in timetable]
     min_timetable.sort()
@@ -27,7 +27,9 @@ def solution(n, t, m, timetable):
     last_bus = 60 * 9 + (n - 1) * t # 09:00 부터 t분 간격으로 n회 출발했을 때 마지막 배차시간
     
     for i in range(n) : # 배차 횟수(n)만큼 반복
-        if len(timetable) < m : # timetable의 모든 사람을 한번에 태울 수 있다면
+        if len(min_timetable) < m : # timetable의 모든 사람을 한번에 태울 수 있다면
+        # 이 구간에서 min_timetable대신 timetable 사용 시 런타임 에러 발생. 왜?
+        # len(timetable)과 len(min_timetable)이 다르다?
             return '%02d:%02d' % (last_bus // 60, last_bus % 60) # 마지막 배차시간때 와서 탑승하면 된다.
         if i == n - 1 : # 마지막 배차시간이라면
             if min_timetable[0] <= last_bus : # 마지막 배차 보다 일찍 온 사람이 있으면(버스에 자리가 없으면)
@@ -39,6 +41,8 @@ def solution(n, t, m, timetable):
                 del min_timetable[j]
 
     return answer
+
+
 
 
 if __name__ == "__main__" :
@@ -55,3 +59,6 @@ if __name__ == "__main__" :
     print(solution(n5, t5, m5, timetable5))
     print(solution(n6, t6, m6, timetable6))
     
+    n, t, m, timetable = 10, 60, 10,  ["17:59", "23:59", "23:59", "23:59", "23:59", "23:59", "23:59", "23:59", "23:59", "23:59", "23:59", "23:59", "23:59", "23:59", "23:59", "23:59"]
+    print(solution(n, t, m, timetable))
+    # 마지막 배차 시간에 있어서 오류가 발생?
