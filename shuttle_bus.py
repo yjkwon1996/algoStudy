@@ -24,12 +24,20 @@ def solution(n, t, m, timetable):
     min_timetable = [int(time[:2]) * 60 + int(time[3:5]) for time in timetable]
     min_timetable.sort()
     
+    # len(timetable)과 len(min_timetable)의 차이?
+    # test_timetable = []
+    # for i in len(timetable)에서 int object is not iterable 에러 발생
+    # 아마 여기서 런타임 에러가 발생하는게 아닌지...
+    
+    
     last_bus = 60 * 9 + (n - 1) * t # 09:00 부터 t분 간격으로 n회 출발했을 때 마지막 배차시간
     
     for i in range(n) : # 배차 횟수(n)만큼 반복
         if len(min_timetable) < m : # timetable의 모든 사람을 한번에 태울 수 있다면
         # 이 구간에서 min_timetable대신 timetable 사용 시 런타임 에러 발생. 왜?
         # len(timetable)과 len(min_timetable)이 다르다?
+        # 외부에서 읽어들인 timetable과 그 정보를 그대로 활용하여 만든 min_timetable에서 차이가 발생?
+        # for i in timetable -> len(timetable)만큼 반복. 그런데 차이가?
             return '%02d:%02d' % (last_bus // 60, last_bus % 60) # 마지막 배차시간때 와서 탑승하면 된다.
         if i == n - 1 : # 마지막 배차시간이라면
             if min_timetable[0] <= last_bus : # 마지막 배차 보다 일찍 온 사람이 있으면(버스에 자리가 없으면)
