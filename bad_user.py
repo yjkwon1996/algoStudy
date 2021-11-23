@@ -19,10 +19,14 @@ abd1** -> abc123 한가지 경우의 수
 # *의 개수, 위치를 고려해서 banned_id에 있는 아이디와 user_id에 있는 아이디가 가능한 경우를 찾는다.
 # 문자열 비교에서 중복을 피해야 한다. frodo를 fr*d*에서 썼으면 *rodo에서 다시 사용하기는 불가능 -> set : 중복제거
 # set과 순열을 이용하여 banned_id의 가능한 조합에서 user_id를 찾고 경우의 수를 계산하면 된다?
-
+# 순열 permutation, 조합 combination. 중복 제거한 집합 set
+# 
 
 def solution(user_id, banned_id):
     answer = 0
+    
+    
+    
     return answer
 
 
