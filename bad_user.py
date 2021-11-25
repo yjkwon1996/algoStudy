@@ -24,6 +24,8 @@ abd1** -> abc123 한가지 경우의 수
 # 조합 : 무작위로 뽑아서 줄을 세우는것(순서가 없다.)
 # 써야되는것은 순서가 필요한 순열 permutation
 
+import itertools
+
 def solution(user_id, banned_id):
     answer = 0
     
