@@ -11,9 +11,16 @@
 
 # 한 번에 건너뛸 수 있는 디딤돌의 수는 k.
 # k=3 일 때, 네칸을 건너뛸 수 없고 계산을 종료하여 answer값을 return
+# dict : key는 몇번째 디딤돌인지, value는 디딤돌의 숫자로 계산하면 될듯?
 
 def solution(stones, k):
     answer = 0
+    
+    st = dict()
+    for i in range(len(stones)) :
+        st[i] = stones[i]
+    print(st)
+    
     return answer
 
 
