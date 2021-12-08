@@ -15,24 +15,47 @@
 # 아니면 dict 필요 없을지도... -> 필요 없을듯?
 # 효율성 탐색을 통과하기 위해서 이분탐색 수행(left, right)
 
-def solution(stones, k):
+
+# 이렇게 하면 정확도는 통과하지만 효율성에서 떨어짐
+def solution_1(stones, k):
     answer = 0
     
     while True :
         blank = 0 # 건너뛰는 횟수
         answer += 1
         for i in range(len(stones)) :
-            if stones[i] == 0 : # 건너야 할 디딤돌의 숫자가 0이면 이분탐색 수행
+            if stones[i] == 0 : # 건너야 할 디딤돌의 숫자가 0이면
                 continue
             else : stones[i] -= 1 # 건너야 할 디딤돌의 숫자가 1 이상이면 건너서 숫자를 -1
         for i in stones :
-            if i == 0 : # 건너야 할 디딤돌의 숫자가 0이면 이분탐색 수행
+            if i == 0 : # 건너야 할 디딤돌의 숫자가 0이면
                 blank += 1
                 if blank == k : # 건너뛰는 횟수가 k가 된다면 탐색 종료
                     return answer
             else : blank = 0 # 건너야 할 디딤돌의 숫자가 0이 아니라면 blank 초기화
         
     return answer
+
+# 따라서 효율성 해결을 위해 이분탐색 수행
+def solution(stones, k) :
+    left = 1
+    right = 200000000
+    while left <= right :
+        mid = (left + right) // 2
+        blank = 0
+        for i in stones :
+            if i - mid <= 0 : # 
+                blank += 1
+            else : blank = 0
+            if blank >= k : break
+        if blank >= k :
+            right = mid - 1
+        else : left = mid + 1
+    
+
+    return left
+
+
 
 
 if __name__ == "__main__" :
