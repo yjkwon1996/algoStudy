@@ -12,8 +12,18 @@
 # gems 배열 내에서, 중복을 제외하고 모든 요소들을 한번씩은 구매해야 한다.
 # 중복 제거한 set을 이용해서 구매해야 할 요소들의 목록을 만들고, 이것을 활용하여 계산
 
+
 def solution(gems):
     answer = []
+    arr = list(set(gems)) # 포함되어야 하는 요소들을 저장
+    print(arr)
+    
+    # arr의 각 요소들을 검사하면서 arr이 빈다면 반복 끝
+    
+    
+    
+    
+    
     return answer
 
 
