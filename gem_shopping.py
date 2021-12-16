@@ -12,17 +12,30 @@
 # gems 배열 내에서, 중복을 제외하고 모든 요소들을 한번씩은 구매해야 한다.
 # 중복 제거한 set을 이용해서 구매해야 할 요소들의 목록을 만들고, 이것을 활용하여 계산
 
+# 투 포인트 알고리즘
+# 
 
+# 효율성에서 통과 실패
 def solution(gems):
     answer = []
     arr = list(set(gems)) # 포함되어야 하는 요소들을 저장
-    print(arr)
+    arr_set = set()
     
-    # arr의 각 요소들을 검사하면서 arr이 빈다면 반복 끝
+    start = 0
+    end = len(gems) - 1
     
     
-    
-    
+    for i in range(len(gems)) : # 순회를 통해 짧은 구간을 갱신
+        for j in range(i, len(gems)) :
+            arr_set.add(gems[j])
+            if len(arr_set) == len(set(gems)) and end - start > j - i :
+                start = i
+                end = j
+                break
+        arr_set.clear()
+    answer.append(start+1)
+    answer.append(end+1)
+
     
     return answer
 
