@@ -16,7 +16,7 @@
 # 
 
 # 효율성에서 통과 실패
-def solution(gems):
+def solution_fail(gems):
     answer = []
     arr = list(set(gems)) # 포함되어야 하는 요소들을 저장
     arr_set = set()
@@ -39,6 +39,15 @@ def solution(gems):
     
     return answer
 
+
+
+# 효율성 통과를 위한 코드
+
+def solution(gems):
+    answer = []
+
+    
+    return answer
 
 
 if __name__ == "__main__" :
