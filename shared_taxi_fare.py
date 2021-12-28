@@ -3,6 +3,7 @@
 # https://programmers.co.kr/learn/courses/30/lessons/72413
 
 # 정확성과 효율성 테스트가 있음
+# 힘들다
 # 
 
 def solution(n, s, a, b, fares):
