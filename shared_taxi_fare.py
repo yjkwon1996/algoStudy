@@ -1,4 +1,4 @@
-# # 2021 KAKAO BLIND RECRUITMENT
+# 2021 KAKAO BLIND RECRUITMENT
 # 합승 택시 요금
 # https://programmers.co.kr/learn/courses/30/lessons/72413
 
