@@ -43,17 +43,43 @@ def solution_fail(enroll, referral, seller, amount):
             money = quota
             if parent == 'root' : break # 최상위 노드라면 반복 종료
     
+    # 이후 sell 딕셔너리를 참고하여 각각의 판매액을 answer에 담고 리턴
     for person in enroll :
         answer.append(sell[person])
     
     return answer
 
 # 테스트케이스 11, 12, 13에서 시간 초과 발생. 효율성에서 문제
-# 
+# 좀 더 알아보도록 하자
+# zip함수
 
 
+import math
 def solution(enroll, referral, seller, amount):
     answer = []
+    parentTree = dict(zip(enroll, referral))
+    answer = dict(zip(enroll, [0 for i in range(len(enroll))]))
+
+    
+    for i in range(len(seller)):
+        earn = amount[i] * 100
+        target = seller[i]
+
+        while True :
+            if earn < 10 : #10원 단위 이하라면 모두 받고 레퍼럴 종료
+                answer[target] += earn
+                break
+            else : #10% 레퍼럴을 제외하고 받는다
+                answer[target] += math.ceil(earn * 0.9)
+                if parentTree[target] == "-": #상위가 없다면 종료
+                    break
+                earn = math.floor(earn*0.1)
+                target = parentTree[target]
+                    
+    return list(answer.values()) 
+        
+        
+    
     
     
     
