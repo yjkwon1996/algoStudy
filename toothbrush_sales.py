@@ -52,7 +52,7 @@ def solution_fail(enroll, referral, seller, amount):
 # 테스트케이스 11, 12, 13에서 시간 초과 발생. 효율성에서 문제
 # 좀 더 알아보도록 하자
 # zip함수
-
+# enroll과, referral을 묶어서 계산할 수 있음
 
 import math
 def solution(enroll, referral, seller, amount):
@@ -78,11 +78,7 @@ def solution(enroll, referral, seller, amount):
                     
     return list(answer.values()) 
         
-        
-    
-    
-    
-    
+
     return answer
 
 
