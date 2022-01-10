@@ -83,7 +83,6 @@ def solution(enroll, referral, seller, amount):
 
 
 
-
 if __name__ == "__main__" :
     enroll1 = ["john", "mary", "edward", "sam", "emily", "jaimie", "tod", "young"]
     referral1 = ["-", "-", "mary", "edward", "mary", "mary", "jaimie", "edward"]
@@ -99,3 +98,7 @@ if __name__ == "__main__" :
     
     print(solution(enroll1, referral1, seller1, amount1))
     print(solution(enroll2, referral2, seller2, amount2))
+
+
+
+
