@@ -2,7 +2,14 @@
 # 광고 삽입
 # https://programmers.co.kr/learn/courses/30/lessons/72414
 
-
+# 시청자들이 동영상의 어떤 구간을 재생했는지 알 수 있는 재생구간
+# 해당 구간을 바탕으로 공익광고가 삽입될 최적의 위치 구하기
+# 광고는 원래 영상과 동시에 재생되는 pip형태로 제공
+# 동영상 재생 길이 play_time, 공익광고 재생 시간 길이 adv_time
+# 시청자들이 해당 동영상을 재생했던 구간 logs
+# 시청자들의 누적 재생 시간이 가장 긴 구간에 공익광고를 삽입
+# 공익광고의 시작 시간을 구해서 return. 누적 재생시간이 가장 많은곳이 여러곳이라면 가장 빠른 시간을 return
+# 
 
 
 def solution(play_time, adv_time, logs):
