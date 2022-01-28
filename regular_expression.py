@@ -18,7 +18,7 @@ for line in data.split("\n"):
 print("\n".join(result))
 
 # 위의 코드를 정규 표현식을 쓴다면?
-#
+# re : regular expression : 정규표현식
 
 import re 
 
