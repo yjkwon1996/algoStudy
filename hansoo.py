@@ -16,7 +16,7 @@ def solution(N) :
         elif lst[0] - lst[1] == lst[1] - lst[2] : # 양의 정수 x의 각 자리가 등차수열을 이룬다면
             cnt += 1
         
-    return lst
+    return cnt
 
     
 N = int(input())
