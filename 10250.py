@@ -16,14 +16,18 @@
 # 각 테스트케이스는 한 행으로 H, W, N 세 정수를 포함하고 있으며 각각 호텔의 층 수, 각 층의 방 수, 몇 번째 손님인지
 
 def ACMhotel(H, W, N) :
-    answer = 0
-    print(H, W, N)
     
+    # 아래층의 1호부터 채워지기 때문에 층수를 기준으로 나눈 값과 나머지가 방 번호가 된다.
+    room = N // H + 1 
+    floor = N % H
     
+    # N이 H의 배수라면 이상한 값이 나온다.
+    # 따라서
+    if N % H == 0 :
+        room = N // H
+        floor = H # N % H 가 0이기 때문에 그냥 H
     
-    
-    return answer
-
+    return floor*100+room
 
 
 T = int(input())
