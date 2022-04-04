@@ -9,5 +9,18 @@
 # 두 번째 줄부터 N개의 줄에는 i번 점의 위치 xi, yi가 주어진다. (-100000 <= xi, yi <= 100000)
 # 좌표는 항상 정수이고 위치가 같은 두 점은 없다.
 
+# x 좌표 순으로 정렬한 뒤, 그 내부에서 y좌표 순으로 정렬
 
+N = int(input())
+
+point = []
+
+for _ in range(N) :
+    x, y = map(int, input().split())
+    point.append([x, y])
+
+point.sort()
+
+for i in range(N) :
+    print(point[i][0], point[i][1])
 
