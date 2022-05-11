@@ -46,6 +46,9 @@ import sys
 # dfs를 반복하면서 위치를 변경하면서, 변경할 수 있는 기회를 하나씩 차감
 # 정렬을 다해도 기회가 남으면 마지막 두칸을 계속해서 교환
 # 기회를 다썼다면 이전까지 탐색했던 값들 중 최댓값을 찾아서 출력
+"""
+# 시간초과
+
 def dfs(idx, check) :
     global answer
     if check == chance :
@@ -73,5 +76,39 @@ for test_case in range(1, T + 1):
     answer = 0
     dfs(0, 0)
 
-print("#{} {}".format(test_case, answer))
+    print("#{} {}".format(test_case, answer))
 
+
+"""
+
+def dfs(check,arr):
+    global answer
+    if check == chance:
+        money = 0
+        for i in range(len(arr)):
+            money += arr[i] * (10 ** (len(arr) - 1 - i))
+        if money > answer:
+            answer = money
+        return
+    for i in range(length):
+        for j in range(i+1,length):
+            arr[i], arr[j] = arr[j], arr[i]
+            str_num = ""
+            for k in arr:
+                str_num += str(k)
+            if visited.get((str_num,check+1),1): # 기존에 방문한 숫자가 아니라면
+                visited[(str_num,check+1)] = 0 # visited에 ('숫자', 1) : 0을 추가. 다음부턴 방문하지 않도록
+                dfs(check+1,arr)    # 값 추가후 dfs
+            arr[i],arr[j] = arr[j], arr[i] # dfs돈 후, 바꿨던 두 숫자를 다시 원래대로 돌린 뒤 복귀
+
+
+T = int(input())
+for test_case in range(1, T + 1):
+    num, chance = map(int, input().split())
+    
+    arr = list(map(int, str(num)))
+    length = len(arr)
+    answer = 0
+    visited = {} # dfs의 반복을 처리할 수 있다
+    dfs(0,arr)
+    print("#{} {}".format(test_case, answer))
