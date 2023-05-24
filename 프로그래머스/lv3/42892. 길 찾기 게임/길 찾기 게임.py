@@ -10,13 +10,13 @@ class Tree :
 
 # 재귀 방식으로 트리 구성하기
 def makeTree(nodeinfo, dictionary) :
-    if len(nodeinfo) == 0 :
+    if len(nodeinfo) == 0 : # 더이상 추가할 자식 노드가 없다면 되돌아가기
         return None
     
     nodeinfo.sort(key=lambda x: x[1], reverse=True) # y축 기준 높은순서부터 정렬
-    root = tuple(nodeinfo[0])
-    nodenumber = dictionary[root]
-    nodeinfo.pop(0)
+    root = tuple(nodeinfo[0]) # 각각의 시작점 노드 좌표
+    nodenumber = dictionary[root] # 노드 idx
+    nodeinfo.pop(0) # root 노드를 빼고 그 아래의 노드들을 left, right로 나눈다
     
     rootx = root[0] # root노드의 x좌표를 기준으로 좌우로 나누기
     leftnode = []
@@ -26,8 +26,8 @@ def makeTree(nodeinfo, dictionary) :
             leftnode.append(x)
         else :
             rightnode.append(x)
-    
-    del dictionary[root]
+
+    del dictionary[root] # 현재 노드를 제거하고 왼쪽, 오른쪽으로 나눠서 다시 트리 구조 만들기
     return Tree(nodenumber, makeTree(leftnode, dictionary), makeTree(rightnode, dictionary))
 
 # 전위 순회
