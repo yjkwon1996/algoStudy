@@ -16,5 +16,8 @@ for i in range(N) :
         answer[stack.pop()] = A[i]
     stack.append(i)
 
-for i in range(N) :
-    print(answer[i])
+print(*answer)
+
+# # 이래도 맞네???
+# for i in range(N) :
+#     print(stack[i])
